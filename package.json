@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "android:prepare": "node scripts/prepare-android.mjs",
+    "android:prepare": "node prepare-android.mjs",
     "sync": "cap sync android"
   },
   "dependencies": {
