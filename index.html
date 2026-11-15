@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Reelfinder</title>
+</head>
+<body>
+<div id="offline" class="offline" hidden>You are offline. Search will work when you are back online.</div>
+
+<main id="app">
+  <section class="view on" id="v-home">
+    <div class="hero">
+      <div class="strip" aria-hidden="true"></div>
+      <div class="status-row"><button class="chip" id="statusChip"><i class="dot"></i><span id="statusText">Not connected</span></button></div>
+      <h1>Find a movie</h1>
+      <p class="sub">Type a title. Your bot answers here.</p>
+      <form class="searchbar" id="homeForm">
+        <input id="homeQ" placeholder="Movie name" maxlength="120" autocomplete="off" enterkeyhint="search" aria-label="Movie name">
+        <button class="go" type="submit">Search</button>
+      </form>
+      <div class="strip" aria-hidden="true"></div>
+    </div>
+    <div class="block" id="recentBlock">
+      <h2>Recent searches</h2>
+      <div class="chips" id="recent"></div>
+      <p class="empty-sm" id="recentEmpty">Nothing yet. Your searches will show here.</p>
+    </div>
+  </section>
+
+  <section class="view" id="v-chat">
+    <header class="top"><h2>Results</h2><button class="ghost" id="newSearch">New search</button></header>
+    <div id="thread" class="thread"></div>
+    <form class="dock" id="chatForm">
+      <input id="chatQ" placeholder="Search another movie" maxlength="120" autocomplete="off" enterkeyhint="search" aria-label="Movie name">
+      <button class="go" type="submit">Search</button>
+    </form>
+  </section>
+
+  <section class="view" id="v-settings">
+    <header class="top"><h2>Settings</h2></header>
+    <div class="block">
+      <h3>Connection</h3>
+      <p class="line"><span id="setStatus">Not connected</span></p>
+      <div class="row"><button class="btn" id="reconnect">Reconnect</button><button class="btn warn" id="logout">Log out</button></div>
+    </div>
+    <div class="block">
+      <h3>Bot</h3>
+      <label>Bot username<input class="fld" id="botInput" placeholder="example_bot" autocapitalize="off" autocomplete="off"></label>
+      <p class="err" id="botErr"></p>
+      <button class="btn" id="saveBot">Check and save</button>
+    </div>
+    <div class="block">
+      <h3>Theme</h3>
+      <div class="seg" id="themeSeg"><button data-t="dark">Dark</button><button data-t="light">Light</button><button data-t="system">System</button></div>
+    </div>
+    <div class="block">
+      <h3>Telegram page</h3>
+      <p class="note">Use these if search stops working.</p>
+      <div class="row"><button class="btn" id="showTg">Show Telegram</button><button class="btn" id="testTg">Test page</button></div>
+      <pre class="diag" id="diag" hidden></pre><button class="btn" id="copyDiag" hidden>Copy report</button>
+    </div>
+    <div class="block">
+      <h3>Privacy</h3>
+      <p class="note">Your Telegram login stays inside the app's own web storage on this phone. Log out below to delete it.</p>
+      <button class="btn" id="clearHistory">Clear search history</button>
+    </div>
+    <div class="block"><p class="note">Reelfinder does not host or sell any movies. It only shows what your bot sends. Use only bots and links you are allowed to use.</p></div>
+  </section>
+</main>
+
+<nav class="tabs" id="tabs">
+  <button data-v="v-home" class="on">Home</button>
+  <button data-v="v-chat">Results</button>
+  <button data-v="v-settings">Settings</button>
+</nav>
+
+<div class="overlay" id="consent" hidden><div class="sheet">
+  <h2>Before you start</h2>
+  <p>Reelfinder is only a window to a Telegram bot you choose. It does not host movies.</p>
+  <p>Use only bots and links that you are allowed to use.</p>
+  <p>It reads your bot's answers from Telegram Web. Telegram may not allow this. Use a spare account if you can.</p>
+  <button class="go wide" id="consentOk">I understand</button>
+</div></div>
+
+<div class="overlay" id="login" hidden><div class="sheet">
+  <h2>Connect Telegram</h2>
+  <p class="note">Reelfinder opens Telegram Web in a hidden window. You log in once there (scan the QR code or use your phone number). No API keys are needed.</p>
+  <label>Bot username<input class="fld" id="loginBot" placeholder="example_bot" autocapitalize="off" autocomplete="off"></label>
+  <p class="err" id="loginErr" role="alert"></p>
+  <button class="go wide" id="loginBtn">Open Telegram login</button>
+  <p class="note">When you are logged in, press the Done button at the bottom of the Telegram page.</p>
+</div></div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
