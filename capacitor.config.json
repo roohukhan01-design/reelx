@@ -1,0 +1,16 @@
+{
+  "appId": "com.reelfinder.app",
+  "appName": "Reelfinder",
+  "webDir": "www",
+  "backgroundColor": "#0f2a33",
+  "server": { "androidScheme": "https", "cleartext": false },
+  "android": { "allowMixedContent": false },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "launchAutoHide": true,
+      "backgroundColor": "#0f2a33",
+      "showSpinner": false
+    }
+  }
+}
